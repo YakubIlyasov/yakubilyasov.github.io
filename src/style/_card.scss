@@ -52,7 +52,8 @@
     display: -webkit-flex;
     display: -ms-flex;
     display: flex;
-    justify-content: flex-end;
+    flex-wrap: wrap-reverse;
+    justify-content: center;
 }
 
 .card__result-title{
@@ -71,10 +72,10 @@
     text-justify: inter-word;
 }
 
-.card__result-switch{
-    position: absolute;
-    top: 41px;
-    right: 35px;
+@media only screen and (max-width: 318px) {
+    .card__search-text{
+        font-size: 1rem;
+    }
 }
 
 @media only screen and (max-width: 600px) {
@@ -91,6 +92,7 @@
 
     .card__result-text{
         margin-top: 15px;
+        margin-left: 0px;
     }
 }
 
@@ -104,19 +106,13 @@
     }
 }
 
-@media only screen and (min-width: 280px) {
-    .card__result-text{
-        margin-left: 0px; //Margin between text and image
-    }
-}
-
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 601px) {
     .card__result-text{
         margin-left: 20px; //Margin between text and image
     }
 }
 
-@media only screen and (min-width: 800px) {
+@media only screen and (min-width: 801px) {
     .card__result-text{
         margin-left: 30px; //Margin between text and image
     }

@@ -12,8 +12,9 @@ var propTitleEnglish = "";
 var propSynopsis = "";
 var propImageLarge = "";
 var titleExists = true;
+var domLoaded = false;
 
-function GetAnimeData() { //Get anime data from API
+function GetAnimeData(forceManga) { //Get anime data from API
     //Declare variables
     url = 'https://kitsu.io/api/edge/anime?filter[text]=';
     input = document.getElementById('search').value.toLowerCase();
@@ -22,9 +23,29 @@ function GetAnimeData() { //Get anime data from API
         url = 'https://kitsu.io/api/edge/manga?filter[text]=';
     }
 
+    //if (forceManga == true) { //If manga searching is forced
+    // if (propTitleEnglish == null) { //Check if title is null
+    //     input = propTitleRomaji.toLowerCase();
+    // } else { //Title is not null
+    //     input = propTitleEnglish.toLowerCase();
+    // }
+    // console.info("input:");
+    // console.info(input);
+    //}
+    // if (input == null) {
+    //     if (propTitleEnglish == null) { //Check if title is null
+    //         input = propTitleRomaji.toLowerCase();
+    //     } else { //Title is not null
+    //         input = propTitleEnglish.toLowerCase();
+    //     }
+    //     console.info("input:");
+    //     console.info(input);
+    // }
+
     if ((input != null) && (input != "")) { //Check if input is not null or empty
         url = url + input; //Add input to url
-
+        console.info("url:");
+        console.info(url);
         $.getJSON(url, function (data) { //Get data from JSON
             var lstData = data["data"]; //Get list with data
 
@@ -88,7 +109,7 @@ function CheckTitle() { //Checks if title is null to display "Not available"
 
 function CheckImage() { //Checks if image is null to display "ImageNotFound"
     if (propImageLarge == null) {
-        propImageLarge = "../dist/media/ImageNotFound.jpg";
+        propImageLarge = "dist/media/ImageNotFound.jpg";
     }
 }
 
@@ -110,7 +131,9 @@ function SetAttributeData(lstData, index) { //Set attribute data to variables
 function TitleDoesNotExist() { //Display data when anime/manga doesn't exist
     $('#animeTitle').html("Not available"); //Change title to english
     $('#animeSynopsis').html("Synopsis not available."); //Change synopsis
-    $('#animeImage').attr('src', "../dist/media/ImageNotFound.jpg"); //Change image
+    $('#animeImage').attr('src', "dist/media/ImageNotFound.jpg"); //Change image
+    propTitleRomaji = "Not available"; //Change title
+    propTitleEnglish = "Not available"; //Change title
     titleExists = false; //Set title exists flag on false
 }
 
@@ -120,6 +143,13 @@ function SwitchMangaIsChanged() { //Set manga filter on/off
     } else { //If switch is not checked
         manga = false; //Set manga filter to false
     }
+
+    //If searchbar is empty, the page has already loaded and the titles are available (they have been searched already once)
+    // if ((domLoaded != false) && ((propTitleEnglish != "Not available")
+    //     || (propTitleRomaji != "Not available"))) {
+    //     console.info("manga is forced");
+    //     GetAnimeData(true); //Get anime data from API
+    // }
 }
 
 function SwitchEnglishIsChanged() { //Set English title on/off
@@ -143,6 +173,7 @@ function SwitchEnglishIsChanged() { //Set English title on/off
 
 //Create event for when page is loaded
 document.addEventListener('DOMContentLoaded', function () {
+    domLoaded = true; //Set domLoaded flag on true
     SwitchMangaIsChanged(); //Set manga filter on/off
     SwitchEnglishIsChanged(); //Set English title on/off
 });
@@ -161,6 +192,6 @@ document.getElementById('btnSearch').addEventListener('click', GetAnimeData);
 //Create event for pressing "enter" on keyboard
 document.addEventListener('keypress', function (e) {
     if (e.keyCode == 13) {
-        GetAnimeData();
+        GetAnimeData(false);
     }
 });

@@ -8,3 +8,9 @@
         max-width: 100%;
     }
 }
+
+@media all and (-webkit-min-device-pixel-ratio:0) and (min-resolution: .001dpcm) and (min-width: 601px) { //chrome (29 and later) and opera (16 and later)
+    .image__body{
+        max-width: 30%;
+    }
+}
