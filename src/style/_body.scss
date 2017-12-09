@@ -1,0 +1,23 @@
+body, html {
+	font-family: "Roboto", sans-serif;
+	font-size: 14px;
+	background: $color-primary;
+	color: $color-primary;
+	overflow: hidden;
+}
+
+body{
+	padding: 7px;
+}
+
+@media only screen and (max-width: 800px) {
+	body, html{
+		overflow: auto;
+	}
+}
+
+@media only screen and (max-height: 700px) {
+	body, html{
+		overflow: auto;
+	}
+}

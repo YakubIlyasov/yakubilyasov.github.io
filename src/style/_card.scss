@@ -1,0 +1,123 @@
+.card__search{
+    border-radius: 5px;
+    background-color: $color-secondary;
+    position: relative;
+    max-width: 550px;
+    margin: 50px auto 20px auto;
+    padding: 10px;
+
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.card__search-center{
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.card__search-text{
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.card__result{
+    position: relative;
+    border-radius: 5px;
+    background-color: $color-secondary;
+    padding: 35px;
+    max-width: 900px;
+    margin: auto;
+}
+
+.card__result-body{
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    align-items: center;
+}
+
+.card__result-text{
+    margin-left: 40px;
+}
+
+.card__result-title-switch{
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.card__result-title{
+    font-weight: bold;
+    font-size: large;
+    font-size: 24px;
+    margin-bottom: 5px;
+    margin-right: auto;
+}
+
+.card__result-synopsis{
+    font-size: 16px;
+    line-height: 22px;
+
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.card__result-switch{
+    position: absolute;
+    top: 41px;
+    right: 35px;
+}
+
+@media only screen and (max-width: 600px) {
+    .card__search{
+        margin: 10px auto 20px auto;
+    }
+    
+    .card__result-body{
+        display: -webkit-flex;
+        display: -ms-flex;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .card__result-text{
+        margin-top: 15px;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .card__result{
+        padding: 16px;
+    }
+    
+    .card__result-text{
+        margin-top: 10px; //Margin between title and image
+    }
+}
+
+@media only screen and (min-width: 280px) {
+    .card__result-text{
+        margin-left: 0px; //Margin between text and image
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .card__result-text{
+        margin-left: 20px; //Margin between text and image
+    }
+}
+
+@media only screen and (min-width: 800px) {
+    .card__result-text{
+        margin-left: 30px; //Margin between text and image
+    }
+}

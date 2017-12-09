@@ -1,0 +1,10 @@
+.image__body{
+    max-width: 30%;
+    border-radius: 5px;
+}
+
+@media only screen and (max-width: 910px) {
+    .image__body{
+        max-width: 100%;
+    }
+}
