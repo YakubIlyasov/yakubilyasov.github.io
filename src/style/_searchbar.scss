@@ -83,3 +83,7 @@
       right: 25px;
    }
  }
+
+ _:default:not(:root:root), container-4 input#search{
+    border-radius: 0px;
+  }

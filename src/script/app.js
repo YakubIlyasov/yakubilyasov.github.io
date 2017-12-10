@@ -7,45 +7,23 @@ var input = "";
 var url = "";
 var titleEnglish = "";
 var titleRomaji = "";
-var propTitleRomaji = "";
-var propTitleEnglish = "";
+var propTitleRomaji = "Two Car";
+var propTitleEnglish = "TWOCAR";
 var propSynopsis = "";
 var propImageLarge = "";
 var titleExists = true;
-var domLoaded = false;
 
 function GetAnimeData(forceManga) { //Get anime data from API
-    //Declare variables
-    url = 'https://kitsu.io/api/edge/anime?filter[text]=';
-    input = document.getElementById('search').value.toLowerCase();
+    url = 'https://kitsu.io/api/edge/anime?filter[text]='; //Anime url
+    input = document.getElementById('search').value.toLowerCase(); //Get text from searchbar
 
     if (manga == true) { //If switch is set to manga
-        url = 'https://kitsu.io/api/edge/manga?filter[text]=';
+        url = 'https://kitsu.io/api/edge/manga?filter[text]='; //Manga url
     }
-
-    //if (forceManga == true) { //If manga searching is forced
-    // if (propTitleEnglish == null) { //Check if title is null
-    //     input = propTitleRomaji.toLowerCase();
-    // } else { //Title is not null
-    //     input = propTitleEnglish.toLowerCase();
-    // }
-    // console.info("input:");
-    // console.info(input);
-    //}
-    // if (input == null) {
-    //     if (propTitleEnglish == null) { //Check if title is null
-    //         input = propTitleRomaji.toLowerCase();
-    //     } else { //Title is not null
-    //         input = propTitleEnglish.toLowerCase();
-    //     }
-    //     console.info("input:");
-    //     console.info(input);
-    // }
 
     if ((input != null) && (input != "")) { //Check if input is not null or empty
         url = url + input; //Add input to url
-        console.info("url:");
-        console.info(url);
+
         $.getJSON(url, function (data) { //Get data from JSON
             var lstData = data["data"]; //Get list with data
 
@@ -102,6 +80,7 @@ function CheckTitle() { //Checks if title is null to display "Not available"
     if (propTitleEnglish == null) {
         propTitleEnglish = "Not available";
     }
+
     if (propTitleRomaji == null) {
         propTitleRomaji = "Not available";
     }
@@ -143,13 +122,6 @@ function SwitchMangaIsChanged() { //Set manga filter on/off
     } else { //If switch is not checked
         manga = false; //Set manga filter to false
     }
-
-    //If searchbar is empty, the page has already loaded and the titles are available (they have been searched already once)
-    // if ((domLoaded != false) && ((propTitleEnglish != "Not available")
-    //     || (propTitleRomaji != "Not available"))) {
-    //     console.info("manga is forced");
-    //     GetAnimeData(true); //Get anime data from API
-    // }
 }
 
 function SwitchEnglishIsChanged() { //Set English title on/off
@@ -160,7 +132,6 @@ function SwitchEnglishIsChanged() { //Set English title on/off
                 $('#animeTitle').html(propTitleEnglish); //Change title to english
             }
         }
-
     } else { //If switch is not checked
         english = false; //Set English title filter to false
         if (titleExists == true) { //If the title exists
@@ -173,7 +144,6 @@ function SwitchEnglishIsChanged() { //Set English title on/off
 
 //Create event for when page is loaded
 document.addEventListener('DOMContentLoaded', function () {
-    domLoaded = true; //Set domLoaded flag on true
     SwitchMangaIsChanged(); //Set manga filter on/off
     SwitchEnglishIsChanged(); //Set English title on/off
 });
